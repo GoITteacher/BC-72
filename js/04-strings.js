@@ -35,19 +35,50 @@
 
 // ============================================
 
+// const username = 'Ivan';
+// const x = 10;
+// const y = 20;
+// const message = 'Hello ' + username;
+
+// const message = `Hello ${username} - ${x + y}`;
+
+// console.log(message);
+
+// ============================================
+
 // const quantity = 15;
-// const orderMsg = "You ordered ??? bots";
+// const orderMsg = `You ordered ${quantity} bots`;
 // console.log(orderMsg);
 
-// const message = "This string is 28 chars long";
+// const message = `This string is ${orderMsg.length} chars long`;
 // console.log(message);
+//==============================================
 
 /**
  * Склади фразу за допомогою шаблонних рядків
  * A has B bots in stock, де A, B - змінні вставлені в рядок.
  */
-// const companyName = "Cyberdyne Systems";
+
+// const companyName = 'Cyberdyne Systems';
 // const repairBots = 150;
 // const defenceBots = 50;
-// const msg = ;
-// console.log(msg); // "Cyberdyne Systems has 200 bots in stock"
+// const msg = `${companyName} has ${repairBots + defenceBots} bots in stock`;
+// console.log(msg);
+
+// const username = 'Volodka';
+
+// const markup = `<h1>Hello ${username}</h1>`;
+
+// console.log(markup);
+
+// ===========================================
+
+// let str = 'Hello world';
+// const strLen = str.length; //11
+// const lastSymbol = str[strLen - 1];
+// console.log(lastSymbol);
+
+// ==========================================
+
+// const str = 'Hello';
+// console.log(str[0]);
