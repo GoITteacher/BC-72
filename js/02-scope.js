@@ -2,22 +2,23 @@
  * Блокова область видимості змінних
  */
 
-const c = 15;
+// const x = 10;
 
-if (true) {
-  const a = 5;
-  console.log(a);
-  console.log(b);
-  console.log(c);
-}
+// function foo() {
+//   const x = 20;
 
-if (true) {
-  const b = 10;
-  console.log(a);
-  console.log(b);
-  console.log(c);
-}
+//   if (true) {
+//     const x = 10;
+//     console.log(x);
+//   }
 
-console.log(a);
-console.log(b);
-console.log(c);
+//   if (true) {
+//     const x = 40;
+//     console.log(x);
+//   }
+
+//   console.log(x);
+// }
+
+// foo();
+// console.log(x);

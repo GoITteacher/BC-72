@@ -2,7 +2,21 @@
  * Оператор switch
  */
 
-const username = "Mango";
+// const username = 'Mila';
+
+// switch (username) {
+//   case 'Mango':
+//     console.log('Hello Mango');
+//     break;
+
+//   case 'Poly':
+//     console.log('Hello Poly');
+//     break;
+
+//   default:
+//     console.log('Error');
+//     break;
+// }
 
 /**
  * Виконай рефакторинг коду задачі використовуючи switch.
@@ -13,17 +27,25 @@ const username = "Mango";
  * Якщо до дедлайну 3+ днів - виведи рядок "Date in the future"
  */
 
-const daysUntilDeadline = 5;
+// const daysUntilDeadline = 5;
 
-if (daysUntilDeadline === 0) {
-  console.log("Today");
-} else if (daysUntilDeadline === 1) {
-  console.log("Tomorrow");
-} else if (daysUntilDeadline === 2) {
-  console.log("Overmorrow");
-} else {
-  console.log("Date in the future");
-}
+// switch (daysUntilDeadline) {
+//   case 0:
+//     console.log('Today');
+//     break;
+
+//   case 1:
+//     console.log('Tomorrow');
+//     break;
+
+//   case 2:
+//     console.log('Overmorrow');
+//     break;
+
+//   default:
+//     console.log('Date in the future');
+//     break;
+// }
 
 /*
  * Напиши скрипт выбора опции доставки товара.
@@ -36,7 +58,53 @@ if (daysUntilDeadline === 0) {
  * - 'Вам перезвонит менеджер'
  */
 
-const option = 1;
-let message = "";
+// const option = 1;
+// let message = '';
 
-console.log(message);
+// switch (option) {
+//   case 1:
+//     message = 'Вы сможете забрать товар завтра с 12:00 в нашем офисе';
+//     break;
+
+//   case 2:
+//     message = 'Курьер доставит заказ завтра с 9:00 до 18:00';
+//     break;
+
+//   case 3:
+//     message = 'Посылка будет отправлена сегодня';
+//     break;
+
+//   default:
+//     message = 'Вам перезвонит менеджер';
+//     break;
+// }
+
+// console.log(message);
+
+// ==============
+// const userKey = 'DOWN';
+
+// switch (userKey) {
+//   case 'LEFT':
+//     break;
+//   case 'RIGHT':
+//     break;
+//   case 'UP':
+//     break;
+//   case 'DOWN':
+//     break;
+// }
+
+// ===============
+
+// const balance = 5000;
+
+// if (balance > 1000) {
+//   console.log('VIP');
+// } else if (balance > 500) {
+//   console.log('Standart');
+// } else {
+//   console.log('---');
+// }
+
+// ================
