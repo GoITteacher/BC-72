@@ -3,16 +3,6 @@
 Яким буде результат виразів?
 
 ```js
-console.log(true && 3);
-console.log(false && 3);
-console.log(true && 4 && 'kiwi');
-console.log(true && 0 && 'kiwi');
-
-console.log(true || 3);
-console.log(true || 3 || 4);
-console.log(true || false || 7);
-console.log(null || 2 || undefined);
-
 console.log(1 && 5);
 console.log(5 && 1);
 console.log(0 && 2);
