@@ -9,18 +9,22 @@
  * - Перевизначення
  */
 
-const courses = ["HTML", "CSS", "JavaScript", "React", "PostgreSQL"];
-console.table(courses);
-console.log([0]);
-console.log([1]);
-console.log([2]);
-console.log([3]);
+// const arr1 = [10, 10, 20, 30];
+// arr1[0] += 1;
+// arr1[0]++;
+// arr1[1] *= 2;
 
-courses[1] = "Jacob";
-courses[3] = "Adrian";
-console.table(courses);
+// const arr2 = ['hello', 'world'];
 
-console.log(courses.length);
+// const courses = ['HTML', 'CSS', 'JavaScript', 'React', 'PostgreSQL', 'Java'];
+// console.table(courses);
+// console.log(courses[0]);
 
-const lastIndex = courses.length - 1;
-console.log(lastIndex);
+// courses[1] = 'Java';
+// console.table(courses);
+
+// console.log(courses.length);
+
+// const lastIndex = courses.length - 1;
+// const lastElem = courses[lastIndex];
+// console.log(lastElem);
