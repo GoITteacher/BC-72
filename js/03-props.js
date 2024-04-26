@@ -5,21 +5,32 @@
  * - Обчислювальні властивості
  */
 
-const username = "Mango";
-const email = "mango@mail.com";
+/* function createUser(username, email) {
+  const user = {
+    username,
+    email,
+  };
 
-const credentials = {};
+  console.log(user);
+}
 
-console.log(credentials);
-console.log(credentials.username);
-console.log(credentials.email);
+createUser('Volodka', 'volodka@gmail.com'); */
+
+// console.log(credentials);
+// console.log(credentials.username);
+// console.log(credentials.email);
 
 /**
  * -------------------------
  */
 
-const inputName = "color";
+// const prefix = prompt('Enter prefix for obj');
 
-const colorPickerData = {};
+const colorPickerData = {
+  ['id'.padEnd(15, '#')]: 'Hello world',
+  ['title'.padEnd(15, '#')]: 'Hello world',
+  ['price'.padEnd(15, '#')]: 'Hello world',
+  ['amount'.padEnd(15, '#')]: 'Hello world',
+};
 
 console.log(colorPickerData);
