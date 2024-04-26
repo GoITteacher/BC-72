@@ -26,11 +26,11 @@ createUser('Volodka', 'volodka@gmail.com'); */
 
 // const prefix = prompt('Enter prefix for obj');
 
-const colorPickerData = {
-  ['id'.padEnd(15, '#')]: 'Hello world',
-  ['title'.padEnd(15, '#')]: 'Hello world',
-  ['price'.padEnd(15, '#')]: 'Hello world',
-  ['amount'.padEnd(15, '#')]: 'Hello world',
-};
+// const colorPickerData = {
+//   ['id'.padEnd(15, '#')]: 'Hello world',
+//   ['title'.padEnd(15, '#')]: 'Hello world',
+//   ['price'.padEnd(15, '#')]: 'Hello world',
+//   ['amount'.padEnd(15, '#')]: 'Hello world',
+// };
 
-console.log(colorPickerData);
+// console.log(colorPickerData);
