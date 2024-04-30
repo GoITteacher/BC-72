@@ -5,16 +5,18 @@
  * - Колбек-функції
  * - Інлайн-колбеки
  */
+//!===============================================================
 
+//!===============================================================
 function fnA(message) {
   console.log(message);
 }
 
 function fnB(number) {
-  console.log("Log during fnB execution ", number);
+  console.log('Log during fnB execution ', number);
 }
 
-fnA("A message");
+fnA('A message');
 
 /**
  * Функція calc(a, b, callback)
