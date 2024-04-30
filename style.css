@@ -19,3 +19,8 @@
 .car-item > p {
   margin: 5px;
 }
+
+.car-color {
+  width: 10px;
+  height: 10px;
+}
