@@ -81,31 +81,130 @@
 
 //!===============================================================
 
-const userProto = {
-  setProps(name, age) {
-    this.name = name;
-    this.age = age;
-  },
+// const userProto = {
+//   setProps(name, age) {
+//     this.name = name;
+//     this.age = age;
+//   },
 
-  showName() {
-    console.log(this.name);
-  },
+//   showName() {
+//     console.log(this.name);
+//   },
 
-  showAge() {
-    console.log(this.age);
-  },
+//   showAge() {
+//     console.log(this.age);
+//   },
+// };
+
+// const user1 = Object.create(userProto);
+// const user2 = Object.create(userProto);
+// const user3 = Object.create(userProto);
+// const user4 = Object.create(userProto);
+// const user5 = Object.create(userProto);
+
+// user1.setProps('Vlad', 23);
+// user2.setProps('Max', 15);
+// user3.setProps('Lina', 24);
+
+// user1.showName();
+// user2.showName();
+// user3.showName();
+
+//!===============================================================
+
+const user1 = {
+  name: 'user1',
+};
+const user2 = {
+  name: 'user2',
+};
+const user3 = {
+  name: 'user3',
 };
 
-const user1 = Object.create(userProto);
-const user2 = Object.create(userProto);
-const user3 = Object.create(userProto);
-const user4 = Object.create(userProto);
-const user5 = Object.create(userProto);
+/* 
+1. визначити тип
+2. якщо стрілчата то дивимось батька
+3. якщо звичайна то момент виклику
+*/
+//!===============================================================
+/* function foo() {
+  function arrow(){
+    console.log(this);
+  };
 
-user1.setProps('Vlad', 23);
-user2.setProps('Max', 15);
-user3.setProps('Lina', 24);
+  arrow();
+}
 
-user1.showName();
-user2.showName();
-user3.showName();
+const user = {
+  copy: foo,
+};
+
+const copyFoo = user.copy.bind(user2);
+
+copyFoo.call(user1); */
+
+//!===============================================================
+
+/* function foo() {
+  const arrow = () => {
+    console.log(this);
+  };
+
+  arrow();
+}
+
+const user = {
+  copy: foo,
+};
+
+const copyFoo = user.copy.bind(user2);
+
+copyFoo.call(user1); */
+
+//!===============================================================
+
+/* 
+
+1. визначити тип
+2. якщо стрілчата то дивимось батька
+3. якщо звичайна то момент виклику
+*/
+
+/* function foo() {
+  const arrow = () => {
+    console.log(this);
+  };
+
+  arrow.call(user2);
+}
+
+const user = {
+  name: 'user',
+  copy: foo.bind(user3),
+};
+
+user.copy(); */
+
+//!===============================================================
+
+/* 
+1. визначити тип
+2. якщо стрілчата то дивимось батька
+3. якщо звичайна то момент виклику
+*/
+
+// const test = () => {
+//   console.log(this);
+// };
+
+// const user = {
+//   name: 'user',
+//   copy: () => {
+//     test.call(user2);
+//   },
+// };
+
+// user.copy.call(user1);
+
+//!===============================================================
