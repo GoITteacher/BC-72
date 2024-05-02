@@ -5,82 +5,183 @@
  * - Глобальний контекст
  * - Контекст методу об'єкта
  */
+//!===============================================================
+
+// Вася запізнюється, тому Вася дуже швидко біжить.
+// Коля запізнюється, тому Коля дуже швидко біжить.
+// Роман запізнюється, тому Роман дуже швидко біжить.
+
+// Коля запізнюється, тому він дуже швидко біжить.
+// Вася запізнюється, тому він дуже швидко біжить.
+// Толя запізнюється, тому він дуже швидко біжить.
+// Макс запізнюється, тому він дуже швидко біжить.
+// Андрій запізнюється, тому він дуже швидко біжить.
+
+//!===============================================================
 
 /**
  * Глобальний контекст
  */
-function foo() {
-  console.log("foo -> this", this);
-}
 
-foo();
+// function foo() {
+//   console.log('foo -> this', this);
+// }
+
+// foo();
+
+//!===============================================================
 
 /**
  * Контекст методу об'єкта
  */
 
-const user = {
-  tag: "Mango",
-  showTag() {
-    console.log("showTag -> this", this);
-  },
-};
+// const user1 = {
+//   tag: 'Mango',
+//   showTag() {
+//   this = user1
+//     console.log('showTag -> this', this);
+//   },
+// };
 
-user.showTag();
+// const user2 = {
+//   tag: 'Kiwi',
+//   showTag() {
+//     //this = user2
+//     console.log('showTag -> this', this);
+//   },
+// };
 
+// user1.showTag();
+// user2.showTag();
+
+//!===============================================================
 /**
  * Контекст методу об'єкта, но объявлена как внешняя функция.
  */
 
-function showTag() {
-  console.log("showTag -> this", this);
-  console.log("showTag -> this.tag", this.tag);
-}
+// function showTag() {
+//   console.log('showTag -> this', this);
+//   console.log('showTag -> this.tag', this.tag);
+// }
 
-showTag();
+// const mango = {
+//   tag: 'Mango',
+//   copyFoo: showTag,
+// };
 
-const mango = {
-  tag: "Mango",
-};
+// const user1 = {
+//   name: 'awdawd',
+//   copyFoo2: mango.copyFoo,
+// };
 
-mango.showUserTag = showTag;
-console.log("mango", mango);
+// const user2 = {
+//   name: 'awdawd',
+//   copyFoo3: user1.copyFoo2,
+// };
 
-mango.showUserTag();
+// user2.copyFoo3();
+
+//!===============================================================
 
 /**
  * Вызов без контекста, но объявлена как метод объекта.
  */
 
-const poly = {
-  tag: "Poly",
-  showTag() {
-    console.log("showTag -> this", this);
-    console.log("showTag -> this.tag", this.tag);
-  },
-};
+// const poly = {
+//   tag: 'Poly',
+//   showTag() {
+//     console.log('showTag -> this', this);
+//   },
+// };
 
-poly.showTag();
+// poly.showTag();
 
-const outerShowTag = poly.showTag;
+// const outerShowTag = poly.showTag;
 
-outerShowTag();
+// outerShowTag();
+
+//!===============================================================
 
 /**
  * Контекст в callback-функциях
  */
 
-const jacob = {
-  tag: "Jacob",
-  showTag() {
-    console.log("showTag -> this", this);
-    console.log("showTag -> this.tag", this.tag);
+// const jacob = {
+//   tag: 'Jacob',
+//   showTag() {
+//     console.log('showTag -> this', this);
+//   },
+// };
+
+// function invokeAction(action) {
+//   const user = {
+//     name: 'Test',
+//     myFoo: action,
+//   };
+
+//   action();
+// }
+
+// invokeAction(jacob.showTag);
+
+//!===============================================================
+
+const user = {
+  foo() {
+    console.log(this);
+
+    const arrow = () => {
+      console.log(this);
+    };
+
+    arrow();
   },
 };
 
-function invokeAction(action) {
-  console.log(action);
-  action();
+user.foo();
+
+//!===============================================================
+
+// 1 - ВИЗНАЧАЄМО ТИП ФУНКЦІЇ
+// - якщо звичайна - то дивимось момент виклику
+// - якщо стрілчата - то дивимось момент створення на контекст батька
+
+/* function foo() {
+  const arrow1 = () => {
+    const arrow1 = () => {
+      const arrow1 = () => {
+        const arrow1 = () => {
+          const arrow1 = () => {
+            console.log(this);
+          };
+          arrow1();
+        };
+        arrow1();
+      };
+      arrow1();
+    };
+    arrow1();
+  };
+  arrow1();
 }
 
-invokeAction(jacob.showTag);
+foo(); */
+
+//!===============================================================
+
+// 1 - ВИЗНАЧАЄМО ТИП ФУНКЦІЇ
+// - якщо звичайна - то дивимось момент виклику
+// - якщо стрілчата - то дивимось момент створення на контекст батька
+
+// function foo() {
+//   const user1 = {
+//     arrow: () => {
+//       console.log(this);
+//     },
+//   };
+//   user1.arrow();
+// }
+
+// foo();
+
+//!===============================================================
