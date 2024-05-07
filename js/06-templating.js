@@ -5,6 +5,7 @@
  */
 
 // const titleEl = document.querySelector('.title');
+// titleEl.remove();
 // titleEl.innerHTML = '<span>Hello world</span>';
 // titleEl.innerHTML = '';
 
