@@ -10,14 +10,15 @@
   <body>
     <p><a href="index.html">Go back</a></p>
 
-    <form class="js-form feedback-form">
+    <!-- <form class="js-form feedback-form">
       <input
         type="text"
-        name="email"
+        name="userEmail"
         class="form-input"
         placeholder="Email"
         required
       />
+
       <input
         type="password"
         name="password"
@@ -32,9 +33,34 @@
         class="form-textarea"
         placeholder="Comment"
       ></textarea>
-      <button class="form-button">Submit</button>
+      <button class="form-button" type="submit">Submit</button>
+    </form> -->
+
+    <form class="js-form feedback-form">
+      <input
+        type="text"
+        name="userName"
+        class="form-input"
+        placeholder="Name"
+        required
+      />
+
+      <textarea
+        cols="30"
+        rows="10"
+        name="message"
+        class="form-textarea"
+        placeholder="Message"
+      ></textarea>
+      <button class="form-button" type="submit">Submit</button>
     </form>
 
+    <ul>
+      <li class="message-item">
+        <p>Name</p>
+        <p>Message Message</p>
+      </li>
+    </ul>
     <script src="./js/03-forms.js"></script>
   </body>
 </html>

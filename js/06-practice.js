@@ -165,3 +165,50 @@ const refs = {
   form: document.querySelector('.js-form'),
   container: document.querySelector('.js-list'),
 };
+
+//!===============================================================
+refs.form.addEventListener('submit', e => {
+  e.preventDefault();
+
+  const carType = refs.form.elements.type.value;
+  const carTitle = refs.form.elements.query.value;
+
+  const filteredCars = cars.filter(car => {
+    const isValidTitle = car.title
+      .toLowerCase()
+      .includes(carTitle.toLowerCase());
+
+    const isValidType = carType === 'all' || car.type === carType;
+
+    return isValidTitle && isValidType;
+  });
+
+  const markup = carsTemplate(filteredCars);
+  refs.container.innerHTML = markup;
+
+  refs.form.reset();
+});
+
+//!===============================================================
+function carTemplate(car) {
+  return `<li class="car-item">
+  <img
+    src="${car.img}"
+    alt=""
+  />
+  <div class="car-info">
+    <h3>${car.title}</h3>
+    <p>Type: ${car.type}</p>
+    <p>Price: ${car.price}$</p>
+  </div>
+</li>`;
+}
+
+function carsTemplate(cars) {
+  return cars.map(carTemplate).join('');
+}
+
+const markup = carsTemplate(cars);
+refs.container.insertAdjacentHTML('beforeend', markup);
+
+//!===============================================================
