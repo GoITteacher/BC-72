@@ -1,5 +1,5 @@
 let colorPalette = [];
-const LENGTH = 5;
+const LENGTH = 12;
 
 function createPaletteItems() {
   const items = [];
@@ -34,7 +34,8 @@ function hexToRgb(hex) {
 }
 
 createPaletteItems();
-////////////////////////////////////////////////////////////////////////////
+
+//!===============================================================
 
 const refs = {
   itemList: document.querySelector('.js-colors-box'),
@@ -43,17 +44,69 @@ const refs = {
   backdropElem: document.querySelector('.js-backdrop'),
 };
 
-////////////////////////////////////////////////////////////////////////////
+//!===============================================================
+refs.btnReloadColor.addEventListener('click', () => {
+  createPaletteItems();
+  const markup = colorsTemplate(colorPalette);
+  refs.itemList.innerHTML = markup;
+});
 
-/* 
-nodeName
-<li class="color-item">
-    <button class="color-body" style="background-color:...;"></button>
-    <div class="color-footer">
-        <div>HEX: ....</div>
-        <div>RGB: ....</div>
-        <div></div>
-    </div>
-</li>
+function colorTemplate(color) {
+  return ` <li class="color-item">
+  <button class="color-body" data-color="${color.hex}" style="background-color: ${color.hex}"></button>
+  <div class="color-footer">
+    <div>HEX: ${color.hex}</div>
+    <div>RGB: ${color.rgb}</div>
+    <div></div>
+  </div>
+</li>`;
+}
 
-*/
+function colorsTemplate(colors) {
+  return colors.map(colorTemplate).join('');
+}
+
+//!===============================================================
+
+refs.itemList.addEventListener('click', e => {
+  if (e.target.nodeName !== 'BUTTON') return;
+
+  const prevActiveElem = refs.itemList.querySelector('.active');
+  prevActiveElem?.classList.remove('active');
+
+  const liElem = e.target.closest('li');
+  liElem.classList.add('active');
+
+  refs.modalElement.style.backgroundColor = e.target.dataset.color;
+  showModal();
+});
+
+refs.backdropElem.addEventListener('click', e => {
+  if (e.target !== e.currentTarget) return;
+  hideModal();
+});
+
+//!===============================================================
+
+createPaletteItems();
+const markup = colorsTemplate(colorPalette);
+refs.itemList.innerHTML = markup;
+
+//!===============================================================
+
+function showModal() {
+  document.body.classList.add('show-modal');
+  window.addEventListener('keydown', onModalClose);
+}
+
+function hideModal() {
+  document.body.classList.remove('show-modal');
+  window.removeEventListener('keydown', onModalClose);
+}
+
+function onModalClose(e) {
+  console.log(e.code);
+  if (e.code === 'Escape') {
+    hideModal();
+  }
+}

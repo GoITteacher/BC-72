@@ -2,10 +2,11 @@ body.show-modal .backdrop {
   opacity: 1;
   visibility: visible;
   pointer-events: initial;
+  display: flex;
 }
 
 .backdrop {
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   position: fixed;

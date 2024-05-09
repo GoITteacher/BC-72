@@ -44,3 +44,68 @@ const products = [
 ];
 
 const container = document.querySelector('.products');
+//!===============================================================
+
+container.addEventListener('click', e => {
+  if (e.target === e.currentTarget) return;
+
+  const liElem = e.target.closest('li');
+  const id = liElem.dataset.id;
+  const product = products.find(el => el.id === +id);
+
+  openModal(product);
+});
+
+//!===============================================================
+
+function productTemplate(product) {
+  return `<li data-id="${product.id}" class="item">
+  <img
+    src="${product.img}"
+    alt="${product.name}"
+  />
+  <h2>${product.name}</h2>
+  <p>Price: ${product.price}</p>
+</li>`;
+}
+
+function productsTemplate(products) {
+  return products.map(productTemplate).join('\n');
+}
+
+const markup = productsTemplate(products);
+
+container.innerHTML = markup;
+
+//!===============================================================
+
+function openModal(product) {
+  const markup = `
+    <div class="modal">
+      <img
+        src="${product.img}"
+        alt="${product.name}"
+      />
+      <h2>${product.name}</h2>
+      <p>Price: ${product.price}</p>
+      <p>${product.description}</p>
+    </div>
+  `;
+
+  const modal = basicLightbox.create(markup, {
+    onShow: instance => {
+      console.log('ADD LISTENER');
+      window.addEventListener('keydown', onModalClose);
+    },
+    onClose: instance => {
+      console.log('REMOVE LISTENER');
+      window.removeEventListener('keydown', onModalClose);
+    },
+  });
+
+  modal.show();
+
+  function onModalClose(e) {
+    if (e.code === 'Escape') modal.close();
+  }
+}
