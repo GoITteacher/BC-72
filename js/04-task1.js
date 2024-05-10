@@ -4,15 +4,20 @@
 
 const user = {
   id: 1,
-  username: "harry_potter",
+  username: 'harry_potter',
   profile: {
-    name: "Harry",
-    surname: "Potter",
+    name: 'Harry',
+    surname: 'Potter',
     age: 25,
   },
 };
 
 // Деструктуризація об'єкта для отримання окремих змінних
+
+const {
+  username: newName,
+  profile: { name, surname },
+} = user;
 
 // Виведення отриманих значень
 // console.log(`Ім'я користувача: ${name}`);
