@@ -5,6 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FormData</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../style/modal.css" />
+    <link rel="stylesheet" href="../style/common.css" />
   </head>
   <body>
     <form class="form box js-form">
@@ -26,7 +34,16 @@
         placeholder="Description"
       ></textarea>
 
-      <button class="form-control" type="submit">Create Book</button>
+      <div class="fb">
+        <input type="radio" name="priority" value="hight" checked />Hight
+        <input type="radio" name="priority" value="middle" />Middle
+        <input type="radio" name="priority" value="low" />Low
+      </div>
+
+      <input type="color" name="color" />
+      <input type="date" name="date" />
+      <input type="number" name="number" />
+      <button class="form-control" type="submit">Test</button>
     </form>
   </body>
 </html>
