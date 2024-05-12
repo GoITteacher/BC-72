@@ -1,0 +1,15 @@
+.transaction {
+  width: 400px;
+  border-width: 2px;
+}
+
+.transaction p {
+  margin: 0;
+}
+
+.deposit {
+  border-color: green;
+}
+.withdraw {
+  border-color: red;
+}

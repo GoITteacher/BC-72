@@ -1,0 +1,21 @@
+.task {
+  width: 400px;
+  border: 1px solid rgb(49, 49, 49);
+}
+
+.task-desc {
+  height: 150px;
+  overflow-y: auto;
+}
+
+.low {
+  border: 2px solid rgb(68, 163, 68);
+}
+
+.middle {
+  border: 2px solid rgb(172, 168, 68);
+}
+
+.hight {
+  border: 2px solid rgb(163, 68, 68);
+}

@@ -1,0 +1,8 @@
+.book {
+  width: 400px;
+  border-width: 2px;
+}
+
+.book p {
+  margin: 0;
+}
