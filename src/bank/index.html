@@ -26,21 +26,16 @@
           min="0"
         />
         <div class="fb">
-          <input type="radio" name="priority" value="deposit" checked />Deposit
-          <input type="radio" name="priority" value="withdraw" />Withdraw
+          <input type="radio" name="type" value="deposit" checked />Deposit
+          <input type="radio" name="type" value="withdraw" />Withdraw
         </div>
 
         <button class="form-control" type="submit">Create Transaction</button>
       </form>
 
       <div class="box" style="width: fit-content">
-        <ul class="js-transaction list">
-          <li class="box transaction deposit">
-            <p>Type: deposit;</p>
-            <p>Amount: 100;</p>
-            <p>Current Balance: 100;</p>
-          </li>
-        </ul>
+        <h5>BALANCE: <span class="js-balance"><span></h5>
+        <ul class="js-transaction list"></ul>
       </div>
     </div>
 

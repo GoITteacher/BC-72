@@ -98,3 +98,48 @@ console.log(numbers); */
 
 // const random = _.random(-100, 100, true);
 // console.log(random);
+
+//!===============================================================
+
+/* const galleryEl = document.querySelector('.gallery');
+
+function imgTemplate(obj) {
+  return ` <a href="${obj.imgUrl}">
+    <img src="${obj.imgUrl}" alt="${obj.title}" testTitle="${obj.title}"/>
+  </a>`;
+}
+
+function imagesTemplate(arr) {
+  return arr.map(imgTemplate).join('');
+}
+
+const markup = imagesTemplate(images);
+galleryEl.innerHTML = markup;
+
+const lightbox = new SimpleLightbox('.gallery a', {
+  nav: true,
+  navText: ['{<', '>}'],
+  captionsData: 'testTitle',
+  captionPosition: 'top',
+  captionDelay: 500,
+});
+
+galleryEl.addEventListener('click', () => {});
+
+lightbox.on('show.simplelightbox', () => {
+  console.log('Hello');
+});
+
+lightbox.on('close.simplelightbox', () => {
+  console.log('Bye');
+});
+
+const btnElem = document.querySelector('.js-btn');
+btnElem.addEventListener('click', () => {
+  lightbox.close();
+});
+
+const markup2 = imagesTemplate(images2);
+galleryEl.insertAdjacentHTML('beforeend', markup2);
+lightbox.refresh();
+ */
