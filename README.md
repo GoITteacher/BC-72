@@ -4,12 +4,14 @@
 
 2. Робота з бібліотеками
 
-   - push.js
-   - lodash
-   - simplelightbox
-   - basicLightBox
-   - vimeo
-   - faker
-   - chalk
    - uuid
    - lazysizes
+   - faker
+   - push.js
+   - simplelightbox
+   - lodash
+   - basicLightBox
+   - vimeo
+   - chalk
+
+3. Практика
