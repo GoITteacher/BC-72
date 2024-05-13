@@ -112,17 +112,6 @@ li {
   display: none;
 }
 
-.blur-up {
-  -webkit-filter: blur(5px);
-  filter: blur(5px);
-  transition: filter 400ms, -webkit-filter 400ms;
-}
-
-.blur-up.lazyloaded {
-  -webkit-filter: blur(0);
-  filter: blur(0);
-}
-
 .form-control {
   margin-top: 10px;
   margin-bottom: 10px;
@@ -130,4 +119,34 @@ li {
 
 input:focus {
   outline: none;
+}
+
+.blur-up {
+  border: 5px solid red;
+  -webkit-filter: blur(5px);
+  filter: blur(5px);
+  transition: all 400ms, -webkit-filter 400ms;
+  transform: rotateZ(30deg);
+}
+
+.blur-up.lazyloading {
+  border: 5px solid rgb(17, 255, 0);
+  -webkit-filter: blur(5px);
+  filter: blur(5px);
+  transition: filter 400ms, -webkit-filter 400ms;
+}
+
+.blur-up.lazyloaded {
+  transform: rotateZ(0deg);
+  border: none;
+  -webkit-filter: blur(0);
+  filter: blur(0);
+}
+
+.user-item {
+  border: 1px solid black;
+}
+
+.user-item p {
+  margin: 0;
 }
