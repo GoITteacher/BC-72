@@ -23,6 +23,10 @@
     "vite": "^4.0.5"
   },
   "dependencies": {
+    "basiclightbox": "^5.0.4",
+    "izitoast": "^1.4.0",
+    "lodash": "^4.17.21",
+    "uuid": "^9.0.1",
     "vite-plugin-full-reload": "^1.0.5",
     "vite-plugin-html-inject": "^1.0.1"
   },
