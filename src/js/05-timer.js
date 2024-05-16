@@ -3,53 +3,72 @@
  * запускати та зупиняти відлік часу
  */
 
+//!===============================================================
+const startBtn = document.querySelector('[data-action-start]');
+const stopBtn = document.querySelector('[data-action-stop]');
+const clockface = document.querySelector('.clockface');
+
+startBtn.addEventListener('click', () => {
+  timer.start();
+  startBtn.disabled = true;
+});
+
+stopBtn.addEventListener('click', () => {
+  timer.stop();
+  startBtn.disabled = false;
+});
+
+//!===============================================================
+
 class Timer {
-  constructor() {}
+  constructor(onTick, date) {
+    this.isActive = false;
+    this.initTime = date;
+    this.tick = onTick;
+    this.intervalId = null;
+  }
 
-  start() {}
+  start() {
+    if (this.isActive) return;
+    this.isActive = true;
 
-  stop() {}
+    this.intervalId = setInterval(() => {
+      const ms = this.initTime - Date.now();
+      const time = this.#getTimeComponents(ms);
+      this.tick(time);
+    }, 1000);
 
-  /*
-   * - Приймає час в мілісекундах
-   * - Вираховує скільки в них вміщається годин/хвилин/секунд
-   * - Повертає об'єкт з властивостями hours, mins, secs
-   * - Адська копіпаста з stackoverflow 💩
-   */
-  getTimeComponents(time) {
-    const hours = this.pad(
-      Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+    setTimeout(() => {
+      clearInterval(this.intervalId);
+    }, this.initTime - Date.now());
+  }
+
+  stop() {
+    this.isActive = false;
+    clearInterval(this.intervalId);
+  }
+
+  #getTimeComponents(time) {
+    const hours = this.#pad(
+      Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
     );
-    const mins = this.pad(Math.floor((time % (1000 * 60 * 60)) / (1000 * 60)));
-    const secs = this.pad(Math.floor((time % (1000 * 60)) / 1000));
+    const mins = this.#pad(Math.floor((time % (1000 * 60 * 60)) / (1000 * 60)));
+    const secs = this.#pad(Math.floor((time % (1000 * 60)) / 1000));
 
     return { hours, mins, secs };
   }
 
-  /*
-   * Приймає число, перетворює його в рядок і додає в початок 0, якщо число менше 2-х знаків
-   */
-  pad(value) {
-    return String(value).padStart(2, "0");
+  #pad(number) {
+    return `${number}`.padStart(2, '0');
   }
 }
 
-const startBtn = document.querySelector("button[data-action-start]");
-const stopBtn = document.querySelector("button[data-action-stop]");
-const clockface = document.querySelector(".js-clockface");
-
-const timer = new Timer({
-  onTick: updateClockface,
-});
-
-// startBtn.addEventListener("click", timer.start.bind(timer));
-// stopBtn.addEventListener("click", timer.stop.bind(timer));
-
-/*
- * - Приймає час в мілісекундах
- * - Вираховує скільки в них вміщається годин/хвилин/секунд
- * - Рисує інтерфейс
- */
-function updateClockface({ hours, mins, secs }) {
-  clockface.textContent = `${hours}:${mins}:${secs}`;
+function tick({ hours, mins, secs }) {
+  const str = `${hours}:${mins}:${secs}`;
+  clockface.textContent = str;
 }
+
+const date = new Date('2024-05-16 12:39');
+const timer = new Timer(tick, date);
+
+//!===============================================================
