@@ -2,32 +2,31 @@ const refs = {
   formEl: document.querySelector('.js-binance-form'),
   infoEl: document.querySelector('.js-binance-info'),
 };
-let userSymbol;
-
-// =================================
 
 refs.formEl.addEventListener('submit', e => {
   e.preventDefault();
-  userSymbol = e.target.elements.query.value;
 
-  getPriceBySymbol(userSymbol)
+  const query = e.target.elements.query.value;
+
+  getPrice(query)
     .then(data => {
-      renderTicker(data);
+      const markup = symbolTemplate(data);
+      refs.infoEl.innerHTML = markup;
     })
     .catch(err => {
-      console.log(err);
+      alert('Щось не так!!!');
     });
 
   e.target.reset();
 });
 
-// =================================
-function getPriceBySymbol(userSymbol) {
+function getPrice(userValue) {
   const BASE_URL = 'https://binance43.p.rapidapi.com';
   const END_POINT = '/ticker/price';
-  const PARAMS = `?symbol=${userSymbol}`;
-
-  const url = BASE_URL + END_POINT + PARAMS;
+  const params = new URLSearchParams({
+    symbol: userValue,
+  });
+  const url = `${BASE_URL}${END_POINT}?${params}`;
 
   const options = {
     headers: {
@@ -36,29 +35,14 @@ function getPriceBySymbol(userSymbol) {
     },
   };
 
-  return fetch(url, options).then(res => {
-    if (res.ok) {
-      return res.json();
-    } else {
-      throw new Error(res.status);
-    }
-  });
+  return fetch(url, options).then(res => res.json());
 }
-// =================================
 
-function symbolTemplate(obj) {
-  const icon = obj.symbol.toLowerCase().replace('usdt', '');
-  obj.price = Number(obj.price).toFixed(2);
+function symbolTemplate({ price, symbol }) {
+  const imgTitle = symbol.slice(0, -4).toLowerCase();
   return `
-  <img
-      class="coin-logo"
-      src="https://assets.coincap.io/assets/icons/${icon}@2x.png"
-    />
-  <span class="coin-title">${obj.symbol}</span>
-  <span class="coin-price">${obj.price}</span>`;
-}
-
-function renderTicker(obj) {
-  const markup = symbolTemplate(obj);
-  refs.infoEl.innerHTML = markup;
+  <img class="coin-logo" src="https://assets.coincap.io/assets/icons/${imgTitle}@2x.png">
+  <p class="coin-title">${symbol}</p>
+  <p class="coin-price">${(+price).toFixed(2)}</p>
+`;
 }

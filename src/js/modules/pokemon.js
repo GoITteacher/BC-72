@@ -3,21 +3,15 @@ const refs = {
   listEl: document.querySelector('.js-pokemon-list'),
 };
 
-refs.formEl.addEventListener('submit', onFormElSubmit);
-function onFormElSubmit(event) {
-  event.preventDefault();
-  const value = refs.formEl.elements.query.value;
-  getPokemon(value).then(renderPokemon);
+function getPokemon(pokemonName) {
+  const BASE_URL = 'https://pokeapi.co/api/v2';
+  const END_POINT = '/pokemon/';
+  const url = `${BASE_URL}${END_POINT}${pokemonName.toLowerCase()}`;
+
+  return fetch(url).then(res => res.json());
 }
 
-function getPokemon(value) {
-  const url = `https://pokeapi.co/api/v2/pokemon/${value.toLowerCase()}`;
-  return fetch(url).then(res => {
-    return res.json();
-  });
-}
-
-function renderPokemon({
+function pokemonTemplate({
   height,
   weight,
   id,
@@ -41,5 +35,22 @@ function renderPokemon({
     <li>Base Experience: ${base_experience}</li>
   </ul>
 </div>`;
-  refs.listEl.insertAdjacentHTML('beforeend', markup);
+  return markup;
 }
+
+refs.formEl.addEventListener('submit', e => {
+  e.preventDefault();
+  const pokemonName = e.target.elements.query.value.trim();
+
+  if (!pokemonName) {
+    alert('Error! Empty Field');
+    return;
+  }
+
+  getPokemon(pokemonName).then(data => {
+    const markup = pokemonTemplate(data);
+    refs.listEl.insertAdjacentHTML('beforeend', markup);
+  });
+
+  e.target.reset();
+});

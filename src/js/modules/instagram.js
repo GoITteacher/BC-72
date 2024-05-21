@@ -3,41 +3,16 @@ const refs = {
   searchInstagramEl: document.querySelector('.js-inst-form'),
 };
 
-function searchInstagram(userName) {
-  const baseUrl = `https://instagram191.p.rapidapi.com/user/details-by-username/`;
-  const options = {
-    headers: {
-      'X-RapidAPI-Key': '9b3ff61931msh1b42d77d34e33dap1c29cajsn3d3169e0e2f4',
-      'X-RapidAPI-Host': 'instagram191.p.rapidapi.com',
-    },
+function getUserInfo(username) {
+  const BASE_URL = 'https://instagram191.p.rapidapi.com';
+  const END_POINT = '/v3/user/details-by-username';
+  const params = new URLSearchParams({ username });
+  const url = `${BASE_URL}${END_POINT}?${params}`;
+
+  const headers = {
+    'X-RapidAPI-Key': '9b3ff61931msh1b42d77d34e33dap1c29cajsn3d3169e0e2f4',
+    'X-RapidAPI-Host': 'instagram191.p.rapidapi.com',
   };
-  const newParam = new URLSearchParams({
-    username: userName,
-  });
-  const url = `${baseUrl}?${newParam}`;
 
-  return fetch(url, options).then(response => response.json());
+  return fetch(url, { headers }).then(res => res.json());
 }
-
-function renderIstagramCard({ biography, full_name }) {
-  const markup = `<img
-    class="profile-pic"
-    src="https://source.unsplash.com/500x500/?random=1&user,userprofile,profile,avatar"
-    alt="Profile Picture"
-  />
-  <div class="username">${full_name}</div>
-  <div class="biography">${biography}</div>`;
-
-  refs.wrapperInstagram.innerHTML = markup;
-}
-
-refs.searchInstagramEl.addEventListener('submit', event => {
-  event.preventDefault();
-  const user = event.target.elements.query.value.trim();
-
-  searchInstagram(user)
-    .then(data => {
-      renderIstagramCard(data.data.user);
-    })
-    .catch(err => 'error');
-});
