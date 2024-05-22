@@ -1,4 +1,10 @@
-import { BooksAPI } from './modules/booksAPI';
+import {
+  createBook,
+  deleteBook,
+  getBooks,
+  resetBook,
+  updateBook,
+} from './modules/booksAPI';
 
 const refs = {
   createFormElem: document.querySelector('.js-create-form'),
@@ -7,125 +13,106 @@ const refs = {
   deleteFormElem: document.querySelector('.js-delete-form'),
   bookListElem: document.querySelector('.js-article-list'),
 };
-const booksAPI = new BooksAPI();
 
-// ===========================================
+window.addEventListener('DOMContentLoaded', () => {
+  getBooks().then(books => {
+    const markup = booksTemplate(books);
+    refs.bookListElem.innerHTML = markup;
+  });
+});
 
-refs.createFormElem.addEventListener('submit', onCreateFormSubmit);
-refs.updateFormElem.addEventListener('submit', onUpdateFormSubmit);
-refs.resetFormElem.addEventListener('submit', onResetFormSubmit);
-refs.deleteFormElem.addEventListener('submit', onDeleteFormSubmit);
+//!===============================================================
 
-// ===========================================
+refs.createFormElem.addEventListener('submit', onCreateBook);
+refs.resetFormElem.addEventListener('submit', onResetBook);
+refs.updateFormElem.addEventListener('submit', onUpdateBook);
+refs.deleteFormElem.addEventListener('submit', onDeleteBook);
 
-booksAPI
-  .getBooks()
-  .then(data => {
-    renderBooks(data.reverse());
-  })
-  .catch(err => {
-    console.log(err);
+function onCreateBook(e) {
+  e.preventDefault();
+  const formData = new FormData(e.target);
+
+  const book = {
+    title: formData.get('bookTitle'),
+    author: formData.get('bookAuthor'),
+    desc: formData.get('bookDesc'),
+  };
+
+  createBook(book).then(createdBook => {
+    const markup = bookTemplate(createdBook);
+    refs.bookListElem.insertAdjacentHTML('beforeend', markup);
   });
 
-// ===========================================
+  e.target.reset();
+}
 
-function templateBook({ id, title, desc, author, img, price, rating }) {
-  return `
-<li class="book-item card" data-id="${id}">
+function onResetBook(e) {
+  e.preventDefault();
+  const formData = new FormData(e.target);
+  const book = {};
+
+  formData.forEach((value, key) => {
+    // key = key.slice(4).toLowerCase();
+    key = key.replace('book', '').toLowerCase();
+    book[key] = value;
+  });
+
+  resetBook(book).then(newBook => {
+    const oldBook = document.querySelector(`[data-id="${book.id}"]`);
+    const markup = bookTemplate(newBook);
+    oldBook.insertAdjacentHTML('afterend', markup);
+    oldBook.remove();
+  });
+}
+function onUpdateBook(e) {
+  e.preventDefault();
+  const formData = new FormData(e.target);
+  const book = {};
+
+  formData.forEach((value, key) => {
+    key = key.replace('book', '').toLowerCase();
+
+    if (value.trim()) {
+      book[key] = value;
+    }
+  });
+
+  updateBook(book).then(newBook => {
+    const oldBook = document.querySelector(`[data-id="${book.id}"]`);
+    const markup = bookTemplate(newBook);
+    oldBook.insertAdjacentHTML('afterend', markup);
+    oldBook.remove();
+  });
+}
+
+function onDeleteBook(e) {
+  e.preventDefault();
+  const id = e.target.elements.bookId.value;
+  const oldBook = document.querySelector(`[data-id="${id}"]`);
+  oldBook.remove();
+  deleteBook(id);
+}
+
+//!===============================================================
+
+function bookTemplate(book) {
+  return `<li class="book-item card" data-id="${book.id}">
   <img
     class="book-img"
-    src="${img}"
+    src="${book.img}"
     alt=""
   />
-
-  <h5 class="book-title">${title}</h5>
-  <h6>Author: ${author}</h6>
-  <p class="book-desc">${desc}</p>
+  <h5 class="book-title">${book.title}</h5>
+  <h6>Author: ${book.author}</h6>
+  <p class="book-desc">${book.desc}</p>
 
   <div class="book-info">
-    <span>Price: ${price}</span>
-    <span>Rating: ${rating}</span>
+    <span>Price: ${book.price}</span>
+    <span>Rating: ${book.rating}</span>
   </div>
 </li>`;
 }
 
-function templateBooks(books) {
-  return books.map(templateBook).join('');
+function booksTemplate(arr) {
+  return arr.map(bookTemplate).join('');
 }
-
-function renderBooks(books) {
-  const markup = templateBooks(books);
-  refs.bookListElem.innerHTML = markup;
-}
-
-// ===========================================
-
-function onCreateFormSubmit(e) {
-  e.preventDefault();
-
-  const book = {
-    title: e.target.elements.bookTitle.value,
-    author: e.target.elements.bookAuthor.value,
-    desc: e.target.elements.bookDesc.value,
-  };
-
-  booksAPI.createBook(book).then(newBook => {
-    const markup = templateBook(newBook);
-    refs.bookListElem.insertAdjacentHTML('afterbegin', markup);
-  });
-
-  e.target.reset();
-}
-
-function onResetFormSubmit(e) {
-  e.preventDefault();
-
-  const formData = new FormData(e.target);
-  const book = {};
-
-  formData.forEach((value, key) => {
-    key = key.slice(4).toLowerCase();
-    book[key] = value;
-  });
-
-  booksAPI.resetBook(book.id, book).then(newBook => {
-    const oldBookCard = document.querySelector(`[data-id="${book.id}"]`);
-    const markup = templateBook(newBook);
-    oldBookCard.insertAdjacentHTML('afterend', markup);
-    oldBookCard.remove();
-  });
-
-  e.target.reset();
-}
-
-function onUpdateFormSubmit(e) {
-  e.preventDefault();
-
-  const formData = new FormData(e.target);
-  const book = {};
-
-  formData.forEach((value, key) => {
-    key = key.slice(4).toLowerCase();
-    if (value) book[key] = value;
-  });
-
-  booksAPI.updateBook(book.id, book).then(newBook => {
-    const oldBookCard = document.querySelector(`[data-id="${book.id}"]`);
-    const markup = templateBook(newBook);
-    oldBookCard.insertAdjacentHTML('afterend', markup);
-    oldBookCard.remove();
-  });
-
-  e.target.reset();
-}
-
-function onDeleteFormSubmit(e) {
-  e.preventDefault();
-  const id = e.target.elements.bookId.value;
-  booksAPI.deleteBook(id).then(() => {
-    const oldBookCard = document.querySelector(`[data-id="${id}"]`);
-    oldBookCard.remove();
-  });
-}
-
-// =========================

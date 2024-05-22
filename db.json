@@ -1,24 +1,6 @@
 {
   "books": [
     {
-      "title": "officiis exercitationem quis",
-      "author": "Florence Bartell",
-      "desc": "Soluta tenetur quibusdam enim explicabo accusamus. Sint dolorem delectus qui hic. Nesciunt consequatur aut molestiae necessitatibus nostrum in nostrum velit voluptas. Iure libero voluptatem. Eligendi eos eos aut cumque labore accusantium architecto.",
-      "rating": 736,
-      "price": 780,
-      "img": "https://source.unsplash.com/1280x720/?random=515&book",
-      "id": 1
-    },
-    {
-      "title": "ab corrupti officia",
-      "author": "Eva Beier",
-      "desc": "Eos harum voluptatem possimus perferendis earum eos similique et. Deserunt consequuntur et autem commodi iste aut sed omnis. Est deserunt facilis voluptas sit dignissimos.",
-      "rating": 705,
-      "price": 6,
-      "img": "https://source.unsplash.com/1280x720/?random=431&book",
-      "id": 2
-    },
-    {
       "title": "sint architecto molestiae",
       "author": "Mrs. Lynne Leuschke",
       "desc": "Aliquam et et reprehenderit voluptatum ducimus omnis odit molestiae ea. Recusandae libero est et sequi qui optio qui optio. Dolores omnis necessitatibus est voluptatem sequi et voluptatem ratione non. Et perspiciatis iusto omnis ut sit harum non harum. Quaerat in mollitia. Et veniam aut.",
@@ -35,15 +17,6 @@
       "price": 564,
       "img": "https://source.unsplash.com/1280x720/?random=34&book",
       "id": 4
-    },
-    {
-      "title": "provident enim exercitationem",
-      "author": "Elaine Christiansen",
-      "desc": "Est perferendis amet. Dolor inventore consequatur. Quis quasi sunt sunt ipsum. Ipsum rem qui. Culpa perspiciatis asperiores.",
-      "rating": 515,
-      "price": 130,
-      "img": "https://source.unsplash.com/1280x720/?random=310&book",
-      "id": 5
     },
     {
       "title": "earum accusamus voluptatem",
@@ -82,12 +55,12 @@
       "id": 9
     },
     {
-      "title": "et atque tenetur",
-      "author": "Jerome Mohr",
-      "desc": "Et omnis et doloribus consequatur. Molestiae aut distinctio asperiores libero sunt iusto. Veritatis consequatur fugiat est corporis illum consequuntur.",
-      "rating": 190,
-      "price": 498,
-      "img": "https://source.unsplash.com/1280x720/?random=605&book",
+      "rating": 7,
+      "price": 662,
+      "img": "https://source.unsplash.com/720x1280/?random=471&book",
+      "title": "",
+      "author": "",
+      "desc": "",
       "id": 10
     },
     {
@@ -397,75 +370,115 @@
       "id": 44
     },
     {
-      "title": "voluptas nulla ut",
-      "author": "Arturo Bogisich",
-      "desc": "Labore sapiente omnis. Cumque accusamus perferendis aut dolore consequatur. Praesentium vel et culpa possimus voluptatem. Sapiente omnis consequuntur quidem totam placeat vel. Deserunt molestiae dolor ea ad ducimus. Ut ipsa dolor soluta non nam repellendus consectetur.",
-      "rating": 498,
-      "price": 365,
-      "img": "https://source.unsplash.com/1280x720/?random=40&book",
-      "id": 45
+      "title": "Direct Tactics Developer",
+      "author": "Carole Pouros MD",
+      "desc": "Rerum illum sint nobis. Eligendi ea nihil error. Aperiam iusto labore. Eum suscipit distinctio ea voluptates iusto non quia commodi sunt.",
+      "rating": 183,
+      "price": 761,
+      "img": "https://source.unsplash.com/1280x720/?random=442&book",
+      "id": 53
     },
     {
-      "title": "voluptates et autem",
-      "author": "Wendell Thiel",
-      "desc": "Et distinctio aut corrupti doloremque natus sequi. Repellendus neque libero. Neque quaerat quod earum. Aut quo architecto quo voluptas. Et ad voluptates maiores dolore facere natus eum sapiente.",
-      "rating": 443,
-      "price": 176,
-      "img": "https://source.unsplash.com/1280x720/?random=909&book",
-      "id": 46
+      "title": "Direct Configuration Administrator",
+      "author": "Thelma Gerhold",
+      "desc": "Corrupti qui neque iusto aut rem voluptatem maiores. Omnis cumque dolores dolor repellendus blanditiis. Omnis porro vel hic vel. Quisquam architecto facere omnis doloribus. Quis nostrum molestias occaecati quis. Et qui fugiat earum ipsum.",
+      "rating": 98,
+      "price": 24,
+      "img": "https://source.unsplash.com/1280x720/?random=636&book",
+      "id": 54
     },
     {
-      "title": "unde voluptatum explicabo",
-      "author": "Richard Borer",
-      "desc": "Ut mollitia dolores enim quisquam dolor nihil. Soluta et non aut quas quia. Cum et quod repudiandae nobis. Qui rerum cum minus placeat expedita sint hic.",
-      "rating": 371,
-      "price": 319,
-      "img": "https://source.unsplash.com/1280x720/?random=758&book",
-      "id": 47
+      "title": "Global Solutions Manager",
+      "author": "Austin Cronin II",
+      "desc": "Cupiditate magni ut dolores eos ut et. Ipsa rerum aut vitae consectetur placeat. Asperiores itaque illum. Consectetur similique aspernatur officia sint aperiam eligendi corrupti ea.",
+      "rating": 696,
+      "price": 124,
+      "img": "https://source.unsplash.com/1280x720/?random=571&book",
+      "id": 55
     },
     {
-      "title": "laudantium odio consequatur",
-      "author": "Seth Moen",
-      "desc": "Ipsam enim aliquid sed nemo tenetur qui quo numquam. Dolores corrupti soluta. Ut aut et quia. Officiis et optio et perferendis aut enim ullam corrupti maxime. Ipsum ut sint ut maxime ullam. Veritatis consequatur consectetur eaque cum temporibus et et accusamus quia.",
-      "rating": 517,
-      "price": 655,
-      "img": "https://source.unsplash.com/1280x720/?random=539&book",
-      "id": 48
+      "title": "Test Title",
+      "author": "Volodka",
+      "desc": "awdawdawd",
+      "img": "https://source.unsplash.com/720x1280/?random=0.07873709042993404&girl,portret,celebrity",
+      "rating": 3,
+      "price": 75,
+      "id": 56
     },
     {
-      "title": "est aliquam reiciendis",
-      "author": "Monica Hessel",
-      "desc": "Sit necessitatibus sed consequuntur harum illo quaerat voluptas est totam. Officiis iste nisi. Harum sunt repudiandae earum similique suscipit qui corporis. Fuga illo cum omnis facere molestias qui ducimus soluta aspernatur.",
-      "rating": 911,
-      "price": 812,
-      "img": "https://source.unsplash.com/1280x720/?random=177&book",
-      "id": 49
+      "title": "awdawd",
+      "author": "awdawd",
+      "desc": "awdawdawd",
+      "img": "https://source.unsplash.com/720x1280/?random=0.5502676684926229&girl,portret,celebrity",
+      "rating": 0,
+      "price": 98,
+      "id": 57
     },
     {
-      "title": "qui laborum molestias",
-      "author": "Velma Mayer III",
-      "desc": "Aut modi quia tenetur. Corporis id omnis. Officiis dicta commodi quasi doloremque sed. Deserunt in enim et consequatur eos aliquam. Voluptas dolorem quas id et qui.",
-      "rating": 85,
-      "price": 488,
-      "img": "https://source.unsplash.com/1280x720/?random=464&book",
-      "id": 50
+      "title": "My first Book",
+      "author": "Volodymyr",
+      "desc": "test desc",
+      "img": "https://source.unsplash.com/720x1280/?random=0.7750173494504102&girl,portret,celebrity",
+      "rating": 4,
+      "price": 83,
+      "id": 58
+    },
+    {
+      "title": "My first Book",
+      "author": "Volodymyr",
+      "desc": "test desc",
+      "img": "https://source.unsplash.com/720x1280/?random=0.714304533983056&girl,portret,celebrity",
+      "rating": 2,
+      "price": 96,
+      "id": 59
+    },
+    {
+      "title": "My first Book",
+      "author": "Volodymyr",
+      "desc": "test desc",
+      "img": "https://source.unsplash.com/720x1280/?random=0.7080356084319075&girl,portret,celebrity",
+      "rating": 0,
+      "price": 56,
+      "id": 60
+    },
+    {
+      "title": "My first Book",
+      "author": "Volodymyr",
+      "desc": "test desc",
+      "img": "https://source.unsplash.com/720x1280/?random=0.6060116404618672&girl,portret,celebrity",
+      "rating": 5,
+      "price": 38,
+      "id": 61
+    },
+    {
+      "title": "My first Book",
+      "author": "Volodymyr",
+      "desc": "test desc",
+      "img": "https://source.unsplash.com/720x1280/?random=0.04627222430677369&girl,portret,celebrity",
+      "rating": 2,
+      "price": 7,
+      "id": 62
+    },
+    {
+      "title": "My first Book",
+      "author": "Volodymyr",
+      "desc": "test desc",
+      "img": "https://source.unsplash.com/720x1280/?random=0.527347302007108&girl,portret,celebrity",
+      "rating": 4,
+      "price": 91,
+      "id": 63
+    },
+    {
+      "title": "My first Book",
+      "author": "Volodymyr",
+      "desc": "test desc",
+      "img": "https://source.unsplash.com/720x1280/?random=0.537822094117631&girl,portret,celebrity",
+      "rating": 1,
+      "price": 41,
+      "id": 64
     }
   ],
   "users": [
-    {
-      "name": "Mr. Cassandra Baumbach",
-      "email": "Avis33@yahoo.com",
-      "phone": "311-332-9970",
-      "img": "https://source.unsplash.com/720x1280/?random=956&girl,portret, celebrity",
-      "id": 1
-    },
-    {
-      "name": "Melvin Schimmel",
-      "email": "Antwon70@gmail.com",
-      "phone": "670-632-2208",
-      "img": "https://source.unsplash.com/720x1280/?random=152&girl,portret,celebrity",
-      "id": 2
-    },
     {
       "name": "Mark Homenick",
       "email": "Simone63@hotmail.com",
@@ -731,6 +744,12 @@
       "phone": "512-500-5480",
       "img": "https://source.unsplash.com/720x1280/?random=835&girl,portret,celebrity",
       "id": 40
+    },
+    {
+      "name": "Lorik",
+      "phone": "+123234123",
+      "email": "awdawd@gmail.com",
+      "id": 41
     }
   ]
 }
