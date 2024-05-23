@@ -1,50 +1,119 @@
 import axios from 'axios';
 
-export class BooksAPI {
-  constructor() {
-    this.BASE_URL = 'http://localhost:3000';
-    this.END_POINT = '/books';
-    this.API_KEY = '123123';
-  }
+axios.defaults.baseURL = 'http://localhost:3000/books';
 
-  async getBooks() {
-    const url = this.BASE_URL + this.END_POINT;
-    const response = await axios.get(url);
-    return response.data;
-  }
+//!===============================================================
+export async function getBooks() {
+  const response = await axios.get('');
+  return response.data;
+}
 
-  async createBook(book) {
-    const url = this.BASE_URL + this.END_POINT;
-    const response = await axios.post(url, book);
-    return response;
-  }
+export async function createBook(book) {
+  book = getDefaultBook(book);
+  const response = await axios.post('', book);
+  return response.data;
+}
 
-  async updateBook(id, book) {
-    const url = `${this.BASE_URL}${this.END_POINT}/${id}`;
-    const response = await axios.patch(url, book);
-  }
+export async function updateBook({ id, ...book }) {
+  const response = await axios.patch(`/${id}`, book);
+  return response.data;
+}
 
-  resetBook(id, book) {
-    const url = `${this.BASE_URL}${this.END_POINT}/${id}`;
+export async function resetBook({ id, ...book }) {
+  book = getDefaultBook(book);
+  const response = await axios.put(`/${id}`, book);
+  return response.data;
+}
 
-    const options = {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(book),
-    };
+export function deleteBook(id) {
+  return axios.delete(`/${id}`);
+}
 
-    return fetch(url, options).then(res => res.json());
-  }
+//!===============================================================
+// function getDefaultBook(book) {
+//   const defaultBook = {
+//     rating: Math.round(Math.random() * 10),
+//     price: Math.round(Math.random() * 1000),
+//     img: `https://source.unsplash.com/720x1280/?random=${Math.round(
+//       Math.random() * 1000,
+//     )}&book`,
+//   };
 
-  deleteBook(id) {
-    const url = `${this.BASE_URL}${this.END_POINT}/${id}`;
+//   return { ...defaultBook, ...book };
+// }
 
-    const options = {
-      method: 'DELETE',
-    };
+//!===============================================================
+const BASE_URL = 'http://localhost:3000';
+const END_POINT = '/books';
 
-    return fetch(url, options).then(res => res.json());
-  }
+export function getBooks() {
+  const url = `${BASE_URL}${END_POINT}`;
+  return fetch(url).then(res => res.json());
+}
+
+export function createBook(book) {
+  book = getDefaultBook(book);
+  const url = `${BASE_URL}${END_POINT}`;
+
+  const options = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(book),
+  };
+
+  return fetch(url, options).then(res => res.json());
+}
+
+export function updateBook({ id, ...book }) {
+  console.log(book);
+  const url = `${BASE_URL}${END_POINT}/${id}`;
+
+  const options = {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(book),
+  };
+
+  return fetch(url, options).then(res => res.json());
+}
+
+export function resetBook({ id, ...book }) {
+  book = getDefaultBook(book);
+  const url = `${BASE_URL}${END_POINT}/${id}`;
+
+  const options = {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(book),
+  };
+
+  return fetch(url, options).then(res => res.json());
+}
+
+export function deleteBook(id) {
+  const url = `${BASE_URL}${END_POINT}/${id}`;
+
+  const options = {
+    method: 'DELETE',
+  };
+
+  return fetch(url, options).then(res => res.json());
+}
+
+function getDefaultBook(book) {
+  const defaultBook = {
+    rating: Math.round(Math.random() * 10),
+    price: Math.round(Math.random() * 1000),
+    img: `https://source.unsplash.com/720x1280/?random=${Math.round(
+      Math.random() * 1000,
+    )}&book`,
+  };
+
+  return { ...defaultBook, ...book };
 }

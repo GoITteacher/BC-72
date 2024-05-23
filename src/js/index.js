@@ -1,10 +1,8 @@
 // import axios from 'axios';
 
-// async function test() {
-//   axios.post('http://localhost:3000/books');
-// }
+// axios.defaults.baseURL = 'http://localhost:3000';
 
-// test();
+// axios.get('/books');
 //!===============================================================
 // async function getBooks() {
 //   const url = 'http://localhost:3000/books';
