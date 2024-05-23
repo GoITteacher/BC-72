@@ -10,7 +10,7 @@ const refs = {
 };
 //!===============================================================
 
-refs.form.addEventListener('submit', async e => {
+refs.form.addEventListener('submit', e => {
   e.preventDefault();
 
   const query = e.target.elements.query.value.trim();
@@ -19,23 +19,8 @@ refs.form.addEventListener('submit', async e => {
     return;
   }
 
-  try {
-    showLoader();
-    const result = await getNews(query);
+  getInfoNews(query);
 
-    if (result.totalResults === 0) {
-      showError('Нічого не знайдено!!!');
-      hideLoader();
-      return;
-    }
-
-    renderArticles(result.articles);
-    showMessage(`Total Results:${result.totalResults}`);
-  } catch {
-    showError('Error!!!');
-  }
-
-  hideLoader();
   e.target.reset();
 });
 
@@ -84,3 +69,24 @@ function showError(errorMessage) {
     position: 'topRight',
   });
 }
+
+async function getInfoNews(query) {
+  showLoader();
+  try {
+    const result = await getNews(query);
+
+    if (result.totalResults === 0) {
+      showError('Нічого не знайдено!!!');
+      hideLoader();
+      return;
+    }
+
+    renderArticles(result.articles);
+    showMessage(`Total Results:${result.totalResults}`);
+  } catch {
+    showError('Error!!!');
+  }
+  hideLoader();
+}
+
+//!===============================================================
