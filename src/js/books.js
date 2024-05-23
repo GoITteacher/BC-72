@@ -146,3 +146,13 @@ async function onDeleteFormSubmit(e) {
 }
 
 // =========================
+
+async function onSubmit() {
+  try {
+    const data = await getBooks();
+    console.log(data);
+    renderBooks(data.reverse());
+  } catch {
+    console.log(err);
+  }
+}
