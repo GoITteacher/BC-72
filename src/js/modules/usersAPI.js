@@ -1,12 +1,32 @@
-export class UsersAPI {
-  constructor() {
-    this.BASE_URL = 'http://localhost:3000';
-    this.END_POINT = '/users';
-    this.API_KEY = '123123';
-  }
+import Axios from 'axios';
+const axios = Axios.create({
+  baseURL: 'http://localhost:3000/users',
+  headers: {
+    'api-key': '12343512312',
+  },
+});
 
-  getUsers() {
-    const url = this.BASE_URL + this.END_POINT;
-    return fetch(url).then(res => res.json());
-  }
+export async function getUsers() {
+  const response = await axios.get('');
+  return response.data;
+}
+
+export async function createUser(user) {
+  const response = await axios.post('', user);
+  return response.data;
+}
+
+export async function resetUser({ id, ...user }) {
+  const response = await axios.put(`/${id}`, user);
+  return response.data;
+}
+
+export async function updateUser({ id, ...user }) {
+  const response = await axios.patch(`/${id}`, user);
+  return response.data;
+}
+
+export async function deleteUser(id) {
+  const response = await axios.delete(`/${id}`);
+  return response.data;
 }
