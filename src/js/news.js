@@ -90,3 +90,19 @@ async function getInfoNews(query) {
 }
 
 //!===============================================================
+
+async function foo() {
+  try {
+    const data = await fetch();
+    console.log('THEN');
+    console.log('THEN');
+    console.log('THEN');
+    console.log('THEN');
+  } catch {
+    console.log('CATCH');
+    console.log('CATCH');
+    console.log('CATCH');
+  } finally {
+    console.log('FINALLY');
+  }
+}
