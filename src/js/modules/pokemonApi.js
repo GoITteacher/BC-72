@@ -1,15 +1,16 @@
-export function getPokemons(url) {
-  return fetch(url).then(res => res.json());
-}
+import axios from 'axios';
 
-export function getPokemonInfo(results) {
-  const promises = results.map(el => {
+export async function getPokemons(url) {
+  const data = await getPokemon(url);
+  let pokemons = data.results.map(el => {
     return getPokemon(el.url);
   });
-  const result = Promise.all(promises);
-  return result;
+  pokemons = await Promise.all(pokemons);
+  data.results = pokemons;
+  return data;
 }
 
-function getPokemon(url) {
-  return fetch(url).then(res => res.json());
+async function getPokemon(url) {
+  const response = await axios.get(url);
+  return response.data;
 }

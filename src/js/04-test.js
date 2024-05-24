@@ -6,7 +6,7 @@ import { fetchArticles, userParams } from './modules/newsAPI';
 const refs = {
   formElem: document.querySelector('.js-search-form'),
   articleListElem: document.querySelector('.js-article-list'),
-  btnLoadMore: document.querySelector('.js-btn-load'),
+  targetElem: document.querySelector('.js-target'),
   loadElem: document.querySelector('.js-loader'),
 };
 //!===============================================================
@@ -17,7 +17,6 @@ refs.formElem.addEventListener('submit', async e => {
   refs.articleListElem.innerHTML = '';
   userParams.query = e.target.elements.query.value.trim();
   userParams.currentPage = 1;
-  hideLoadMoreBtn();
   loader.show();
 
   try {
@@ -32,13 +31,12 @@ refs.formElem.addEventListener('submit', async e => {
     showError('Error Server!');
   }
 
-  updateBtnStatus();
+  updateObserverStatus();
   loader.hide();
   e.target.reset();
 });
 
-refs.btnLoadMore.addEventListener('click', async () => {
-  hideLoadMoreBtn();
+async function loadMore() {
   loader.show();
   userParams.currentPage += 1;
 
@@ -49,10 +47,9 @@ refs.btnLoadMore.addEventListener('click', async () => {
     showError('Error Server!');
   }
 
-  updateBtnStatus();
-  scrollPage();
+  updateObserverStatus();
   loader.hide();
-});
+}
 
 //!===============================================================
 
@@ -89,18 +86,12 @@ function renderArticles(arr) {
 
 //!===============================================================\
 
-function showLoadMoreBtn() {
-  refs.btnLoadMore.classList.remove('hidden');
-}
-function hideLoadMoreBtn() {
-  refs.btnLoadMore.classList.add('hidden');
-}
-function updateBtnStatus() {
+function updateObserverStatus() {
   if (userParams.currentPage >= userParams.maxPage) {
-    hideLoadMoreBtn();
+    observer.unobserve(refs.targetElem);
     showMessage('The End!!!');
   } else {
-    showLoadMoreBtn();
+    observer.observe(refs.targetElem);
   }
 }
 
@@ -112,6 +103,17 @@ const loader = {
     refs.loadElem.classList.add('hidden');
   },
 };
+
+//!===============================================================
+
+const observer = new IntersectionObserver(observerCallback);
+function observerCallback(entries) {
+  const entry = entries[0];
+  if (entry.isIntersecting) {
+    loadMore();
+  }
+}
+
 //!===============================================================
 
 function showMessage(message) {
@@ -125,17 +127,5 @@ function showError(message) {
   iziToast.error({
     title: '',
     message,
-  });
-}
-
-//!===============================================================
-
-function scrollPage() {
-  const liElem = refs.articleListElem.firstElementChild;
-  const height = liElem.getBoundingClientRect().height;
-
-  window.scrollBy({
-    top: height,
-    behavior: 'smooth',
   });
 }

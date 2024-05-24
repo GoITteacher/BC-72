@@ -1,8 +1,7 @@
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
-
-import { fetchArticles } from './modules/newsAPI2.js';
-import { articlesTemplate } from './templates/render-function2.js';
+import { fetchArticles } from './modules/newsApi2';
+import { articlesTemplate } from './templates/render-function2';
 
 const refs = {
   formElem: document.querySelector('.js-search-form'),
@@ -11,109 +10,62 @@ const refs = {
   loadElem: document.querySelector('.js-loader'),
 };
 
-// ======================================
-let query;
-let page;
-let maxPage;
+//!===============================================================
 
-refs.formElem.addEventListener('submit', onFormSubmit);
+let currentPage = 1;
+let query = '';
+let maxPage = 1;
+const perPage = 15;
 
-// ======================================
+//!===============================================================
 
-async function onFormSubmit(e) {
+refs.formElem.addEventListener('submit', async e => {
   e.preventDefault();
+  refs.articleListElem.innerHTML = '';
+  currentPage = 1;
   query = e.target.elements.query.value.trim();
-  page = 1;
 
-  if (!query) {
-    showError('Empty field');
-    return;
-  }
+  const result = await fetchArticles(query, currentPage);
+  renderArticles(result.articles);
+  maxPage = result.total_pages;
+  updateObserverStatus();
 
-  showLoader();
-
-  try {
-    const data = await fetchArticles(query, page);
-    if (data.totalResults === 0) {
-      showError('Sorry!');
-    }
-    maxPage = data.total_pages;
-    refs.articleListElem.innerHTML = '';
-    renderArticles(data.articles);
-  } catch (err) {
-    showError(err);
-  }
-
-  hideLoader();
-  checkObserverStatus();
   e.target.reset();
+});
+
+async function loadMore() {
+  currentPage += 1;
+  const result = await fetchArticles(query, currentPage);
+  renderArticles(result.articles);
+  updateObserverStatus();
 }
 
-async function onLoadMore() {
-  page += 1;
-  showLoader();
-  const data = await fetchArticles(query, page);
-  renderArticles(data.articles);
-  hideLoader();
-  checkObserverStatus();
-
-  scrollBy({
-    behavior: 'smooth',
-    top: 1000,
-  });
-}
-
-// ======================================
-function renderArticles(articles) {
-  const markup = articlesTemplate(articles);
+//!===============================================================
+function renderArticles(arr) {
+  const markup = articlesTemplate(arr);
   refs.articleListElem.insertAdjacentHTML('beforeend', markup);
 }
 
-function observeTarget() {
-  console.log('observe');
-  observer.observe(refs.targetElem);
-}
-function unobserveTarget() {
-  console.log('unobserve');
-  observer.unobserve(refs.targetElem);
-}
+//!===============================================================
 
-function showLoader() {
-  refs.loadElem.classList.remove('hidden');
-}
-function hideLoader() {
-  refs.loadElem.classList.add('hidden');
-}
-
-function showError(msg) {
-  iziToast.error({
-    title: 'Error',
-    message: msg,
-  });
-}
-
-function checkObserverStatus() {
-  if (page >= maxPage) {
-    unobserveTarget();
-    showError('Sorry! The End!');
+function updateObserverStatus() {
+  if (currentPage >= maxPage) {
+    observer.unobserve(refs.targetElem);
   } else {
-    observeTarget();
+    observer.observe(refs.targetElem);
   }
 }
-// ========================================
 
-const options = {
-  root: document.querySelector('#scrollArea'),
-  rootMargin: '0px',
-  threshold: 1.0,
-};
-
+//!===============================================================
 const callback = function (entries, observer) {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      onLoadMore();
-    }
-  });
+  const entry = entries[0];
+
+  if (entry.isIntersecting) {
+    loadMore();
+  }
 };
 
-const observer = new IntersectionObserver(callback, options);
+const observer = new IntersectionObserver(callback, {
+  rootMargin: '1200px',
+  threshold: 0,
+});

@@ -1,5 +1,5 @@
-import { getPokemons, getPokemonInfo } from './modules/pokemonApi';
-const url = `https://pokeapi.co/api/v2/pokemon?limit=8&offset=0`;
+import { getPokemons } from './modules/pokemonApi';
+const url = `https://pokeapi.co/api/v2/pokemon?limit=4&offset=0`;
 
 const refs = {
   formElem: document.querySelector('.js-search-form'),
@@ -11,9 +11,9 @@ const refs = {
 let nextUrl = '';
 let prevUrl = '';
 
-getPokemons(url).then(data => {
-  loadPokemonData(data);
-});
+getPokemonsData(url);
+
+//!===============================================================
 
 function pokemonTemplate({
   sprites,
@@ -51,34 +51,27 @@ function renderPokemon(pokemonList) {
   refs.pokemonListElem.innerHTML = markup;
 }
 
-refs.nextBtnElem.addEventListener('click', onBtnNextClick);
-refs.prevBtnElem.addEventListener('click', onBtnPrevClick);
+//!===============================================================
 
-function onBtnNextClick() {
-  getPokemons(nextUrl).then(data => {
-    loadPokemonData(data);
-  });
+async function getPokemonsData(url) {
+  try {
+    const data = await getPokemons(url);
+    renderPokemon(data.results);
+
+    nextUrl = data.next;
+    prevUrl = data.previous;
+
+    refs.nextBtnElem.disabled = !data.next;
+    refs.prevBtnElem.disabled = !data.previous;
+  } catch {
+    console.log('err');
+  }
 }
 
-function onBtnPrevClick() {
-  getPokemons(prevUrl).then(data => {
-    loadPokemonData(data);
-  });
-}
+refs.nextBtnElem.addEventListener('click', () => {
+  getPokemonsData(nextUrl);
+});
 
-function updateBtn() {
-  refs.prevBtnElem.disabled = !prevUrl;
-  refs.nextBtnElem.disabled = !nextUrl;
-}
-
-function loadPokemonData(data) {
-  const { next, previous, results } = data;
-  nextUrl = next;
-  prevUrl = previous;
-  updateBtn();
-  getPokemonInfo(results).then(pokemonList => {
-    renderPokemon(pokemonList);
-  });
-}
-
-// =========
+refs.prevBtnElem.addEventListener('click', () => {
+  getPokemonsData(prevUrl);
+});
